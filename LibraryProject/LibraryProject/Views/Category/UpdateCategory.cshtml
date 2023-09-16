@@ -1,0 +1,19 @@
+﻿@using System.Web.UI.WebControls
+@model LibraryProject.Models.Entity.Categories
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post))
+{
+    <div class="container">
+            @Html.HiddenFor(x=>x.CategoryId)
+            <br />
+            <label>Category Name</label>
+            @Html.TextBoxFor(x=>x.CategoryName, new{@class="form-control"})
+            <br />
+            <button class="btn btn-success">Update Category</button>
+    </div>
+}
+

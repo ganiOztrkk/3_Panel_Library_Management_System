@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbLibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookName" Type="varchar" MaxLength="50" />
+    <Property Name="BookCategory" Type="tinyint" />
+    <Property Name="BookWriter" Type="int" />
+    <Property Name="PublishYear" Type="char" MaxLength="4" />
+    <Property Name="Publisher" Type="varchar" MaxLength="50" />
+    <Property Name="Pages" Type="varchar" MaxLength="4" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="CashTransactions">
+    <Key>
+      <PropertyRef Name="CashTransactionId" />
+    </Key>
+    <Property Name="CashTransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="50" />
+    <Property Name="TotalCash" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberName" Type="varchar" MaxLength="50" />
+    <Property Name="MemberSurname" Type="varchar" MaxLength="50" />
+    <Property Name="MemberUsername" Type="varchar" MaxLength="20" />
+    <Property Name="MemberPassword" Type="varchar" MaxLength="50" />
+    <Property Name="MemberImage" Type="varchar(max)" />
+    <Property Name="MemberPhone" Type="varchar" MaxLength="50" />
+    <Property Name="MemberSchool" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Penalties">
+    <Key>
+      <PropertyRef Name="PenaltyId" />
+    </Key>
+    <Property Name="PenaltyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Member" Type="int" />
+    <Property Name="PenaltyStart" Type="smalldatetime" />
+    <Property Name="PenaltyEnd" Type="smalldatetime" />
+    <Property Name="PenaltyAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PenaltyReason" Type="int" />
+  </EntityType>
+  <EntityType Name="Rents">
+    <Key>
+      <PropertyRef Name="RentId" />
+    </Key>
+    <Property Name="RentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Book" Type="int" />
+    <Property Name="Member" Type="int" />
+    <Property Name="Employee" Type="int" />
+    <Property Name="RentalDate" Type="smalldatetime" />
+    <Property Name="ReturnDate" Type="smalldatetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Writers">
+    <Key>
+      <PropertyRef Name="WriterId" />
+    </Key>
+    <Property Name="WriterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WriterName" Type="varchar" MaxLength="50" />
+    <Property Name="WriterSurname" Type="varchar" MaxLength="50" />
+    <Property Name="WriterDetail" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_Books_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="BookCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Books_Writers">
+    <End Role="Writers" Type="Self.Writers" Multiplicity="0..1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Writers">
+        <PropertyRef Name="WriterId" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="BookWriter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Penalties_Members">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="Penalties" Type="Self.Penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Penalties">
+        <PropertyRef Name="Member" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Penalties_Rents">
+    <End Role="Rents" Type="Self.Rents" Multiplicity="0..1" />
+    <End Role="Penalties" Type="Self.Penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rents">
+        <PropertyRef Name="RentId" />
+      </Principal>
+      <Dependent Role="Penalties">
+        <PropertyRef Name="PenaltyReason" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Books">
+    <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Members">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Member" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbLibraryModelStoreContainer">
+    <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CashTransactions" EntityType="Self.CashTransactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Penalties" EntityType="Self.Penalties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rents" EntityType="Self.Rents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Writers" EntityType="Self.Writers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Books_Categories" Association="Self.FK_Books_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Books_Writers" Association="Self.FK_Books_Writers">
+      <End Role="Writers" EntitySet="Writers" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Penalties_Members" Association="Self.FK_Penalties_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Penalties" EntitySet="Penalties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Penalties_Rents" Association="Self.FK_Penalties_Rents">
+      <End Role="Rents" EntitySet="Rents" />
+      <End Role="Penalties" EntitySet="Penalties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Books" Association="Self.FK_Rents_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Employees" Association="Self.FK_Rents_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Members" Association="Self.FK_Rents_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

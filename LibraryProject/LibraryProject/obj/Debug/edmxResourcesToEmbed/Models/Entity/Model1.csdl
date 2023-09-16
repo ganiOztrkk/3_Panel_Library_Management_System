@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbLibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BookCategory" Type="Byte" />
+    <Property Name="BookWriter" Type="Int32" />
+    <Property Name="PublishYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="Publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pages" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Books_Categories" FromRole="Books" ToRole="Categories" />
+    <NavigationProperty Name="Writers" Relationship="Self.FK_Books_Writers" FromRole="Books" ToRole="Writers" />
+    <NavigationProperty Name="Rents" Relationship="Self.FK_Rents_Books" FromRole="Books" ToRole="Rents" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="CashTransactions">
+    <Key>
+      <PropertyRef Name="CashTransactionId" />
+    </Key>
+    <Property Name="CashTransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalCash" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Books" Relationship="Self.FK_Books_Categories" FromRole="Categories" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Rents" Relationship="Self.FK_Rents_Employees" FromRole="Employees" ToRole="Rents" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MemberSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MemberUsername" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MemberPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MemberImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MemberPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MemberSchool" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Penalties" Relationship="Self.FK_Penalties_Members" FromRole="Members" ToRole="Penalties" />
+    <NavigationProperty Name="Rents" Relationship="Self.FK_Rents_Members" FromRole="Members" ToRole="Rents" />
+  </EntityType>
+  <EntityType Name="Penalties">
+    <Key>
+      <PropertyRef Name="PenaltyId" />
+    </Key>
+    <Property Name="PenaltyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Member" Type="Int32" />
+    <Property Name="PenaltyStart" Type="DateTime" Precision="0" />
+    <Property Name="PenaltyEnd" Type="DateTime" Precision="0" />
+    <Property Name="PenaltyAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PenaltyReason" Type="Int32" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Penalties_Members" FromRole="Penalties" ToRole="Members" />
+    <NavigationProperty Name="Rents" Relationship="Self.FK_Penalties_Rents" FromRole="Penalties" ToRole="Rents" />
+  </EntityType>
+  <EntityType Name="Rents">
+    <Key>
+      <PropertyRef Name="RentId" />
+    </Key>
+    <Property Name="RentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Book" Type="Int32" />
+    <Property Name="Member" Type="Int32" />
+    <Property Name="Employee" Type="Int32" />
+    <Property Name="RentalDate" Type="DateTime" Precision="0" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Books" Relationship="Self.FK_Rents_Books" FromRole="Rents" ToRole="Books" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Rents_Employees" FromRole="Rents" ToRole="Employees" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Rents_Members" FromRole="Rents" ToRole="Members" />
+    <NavigationProperty Name="Penalties" Relationship="Self.FK_Penalties_Rents" FromRole="Rents" ToRole="Penalties" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Writers">
+    <Key>
+      <PropertyRef Name="WriterId" />
+    </Key>
+    <Property Name="WriterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WriterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WriterSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WriterDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Books" Relationship="Self.FK_Books_Writers" FromRole="Writers" ToRole="Books" />
+  </EntityType>
+  <Association Name="FK_Books_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="BookCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Books_Writers">
+    <End Role="Writers" Type="Self.Writers" Multiplicity="0..1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Writers">
+        <PropertyRef Name="WriterId" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="BookWriter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Books">
+    <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Penalties_Members">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="Penalties" Type="Self.Penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Penalties">
+        <PropertyRef Name="Member" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Members">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Member" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Penalties_Rents">
+    <End Role="Rents" Type="Self.Rents" Multiplicity="0..1" />
+    <End Role="Penalties" Type="Self.Penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rents">
+        <PropertyRef Name="RentId" />
+      </Principal>
+      <Dependent Role="Penalties">
+        <PropertyRef Name="PenaltyReason" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbLibraryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Books" EntityType="Self.Books" />
+    <EntitySet Name="CashTransactions" EntityType="Self.CashTransactions" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <EntitySet Name="Members" EntityType="Self.Members" />
+    <EntitySet Name="Penalties" EntityType="Self.Penalties" />
+    <EntitySet Name="Rents" EntityType="Self.Rents" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Writers" EntityType="Self.Writers" />
+    <AssociationSet Name="FK_Books_Categories" Association="Self.FK_Books_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Books_Writers" Association="Self.FK_Books_Writers">
+      <End Role="Writers" EntitySet="Writers" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Books" Association="Self.FK_Rents_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Employees" Association="Self.FK_Rents_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Penalties_Members" Association="Self.FK_Penalties_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Penalties" EntitySet="Penalties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Members" Association="Self.FK_Rents_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Penalties_Rents" Association="Self.FK_Penalties_Rents">
+      <End Role="Rents" EntitySet="Rents" />
+      <End Role="Penalties" EntitySet="Penalties" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

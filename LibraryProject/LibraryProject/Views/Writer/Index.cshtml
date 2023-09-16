@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Writers>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container text-center">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Writer Name</th>
+            <th>Writer Surname</th>
+            <th>Writer Details</th>
+            <th>Update Writer</th>
+            <th>Delete Writer</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.WriterId</td>
+                <td>@item.WriterName</td>
+                <td>@item.WriterSurname</td>
+                <td>@item.WriterDetail</td>
+                <td><a href="/Writer/UpdateWriter/@item.WriterId" class="btn btn-warning">Update</a></td>
+                <td><a href="/Writer/DeleteWriter/@item.WriterId" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Writer/AddWriter/" class="btn btn-primary">Add New Writer</a>
+</div>
