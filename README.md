@@ -2,7 +2,7 @@
 # Mvc5 İle 3 Panelli Kütüphane Yönetim Sistemi
 
 Bir kütüphanenin vitrin, admin ve kullanıcı olmak üzere 3 temel panelini oluşturuyoruz. 
-## Kullanılan başlıklar
+## Kullanılacak Başlıklar
 
 * Layout Kontrolü
 * Model Yapıları
