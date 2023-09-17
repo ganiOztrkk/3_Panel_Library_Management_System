@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Books>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container mt-2 mb-2 text-center">
+    
+    @using (Html.BeginForm("Index", "Book", FormMethod.Get))
+    {
+        <label>Search Book Title: </label>@Html.TextBox("search")
+        <button class="btn btn-outline-primary">Search</button>
+    }
+    
+    <br/>
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Writer</th>
+            <th>Category</th>
+            <th>Pages</th>
+            <th>Publisher</th>
+            <th>Publish Date</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookId</td>
+                <td>@item.BookName</td>
+                <td>@item.Writers.WriterName @item.Writers.WriterSurname</td>
+                <td>@item.Categories.CategoryName</td>
+                <td>@item.Pages</td>
+                <td>@item.Publisher</td>
+                <td>@item.PublishYear</td>
+                <td>@item.Status</td>
+                <td><a href="/Book/UpdateBook/@item.BookId" class="btn btn-warning">Update</a></td>
+                <td><a href="/Book/DeleteBook/@item.BookId" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Book/AddBook/" class="btn btn-primary">Add Book</a>
+</div>

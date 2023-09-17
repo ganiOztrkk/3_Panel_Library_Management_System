@@ -1,0 +1,46 @@
+﻿@model LibraryProject.Models.Entity.Books
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container">
+    <form method="post">
+        <br />
+        <label>Name</label>
+        <input type="text" class="form-control" style="width: 50%" name="BookName" />
+        <br />
+        <label>Category</label>
+        <select name="BookCategory" class="form-select" style="width: 50%">
+            @foreach (var item in @ViewBag.Categories)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+        <br />
+        <label>Writer</label>
+        <select name="BookWriter" class="form-select" style="width: 50%">
+            @foreach (var item in @ViewBag.Writers)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+        <br />
+        <label>Publisher</label>
+        <input type="text" class="form-control" style="width: 50%" name="Publisher" />
+        <br />
+        <label>Publish Date</label>
+        <input type="text" class="form-control" style="width: 50%" name="PublishYear" />
+        <br />
+        <label>Number of Pages</label>
+        <input type="text" class="form-control" style="width: 50%" name="Pages" />
+        <br />
+        <label>Status</label>
+        <select class="form-control" name="Status" style="width:25%">
+            <option value=true>Available</option>
+            <option value=false>Unavailable</option>
+        </select>
+        <br />
+        <button class="btn btn-primary">Add Book</button>
+    </form>
+</div>

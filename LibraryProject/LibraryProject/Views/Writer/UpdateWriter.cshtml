@@ -1,0 +1,22 @@
+﻿@model LibraryProject.Models.Entity.Writers
+@{
+    ViewBag.Title = "UpdateWriter";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container mt-2 mb-2">
+    @using (Html.BeginForm("UpdateWriter", "Writer", FormMethod.Post))
+    {
+        @Html.HiddenFor(x=>x.WriterId)
+        @Html.LabelFor(x=>x.WriterName, "Writer Name")
+        @Html.TextBoxFor(x=>x.WriterName, new{@class="form-control"})
+        <br/>
+        @Html.LabelFor(x=>x.WriterSurname, "Writer Surname")
+        @Html.TextBoxFor(x=>x.WriterSurname, new{@class="form-control"})
+        <br/>
+        @Html.LabelFor(x=>x.WriterDetail, "Writer Detail")
+        @Html.TextAreaFor(x=>x.WriterDetail, new{@class="form-control"})
+        <br/>
+        <button class="btn btn-success">Writer Update</button>
+    }
+</div>

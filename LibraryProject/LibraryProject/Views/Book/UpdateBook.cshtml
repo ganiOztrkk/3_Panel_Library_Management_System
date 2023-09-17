@@ -1,0 +1,31 @@
+﻿@model LibraryProject.Models.Entity.Books
+@{
+    ViewBag.Title = "UpdateBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm("UpdateBook", "Book", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.BookId)
+        <label>Title</label>
+        @Html.TextBoxFor(x => x.BookName, new { @class = "form-control" })
+        <br />
+        <label>Category</label>
+        @Html.DropDownListFor(x => x.Categories.CategoryId, (List<SelectListItem>)ViewBag.Categories, new { @class = "form-control" })
+        <br />
+        <label>Writer</label>
+        @Html.DropDownListFor(x => x.Writers.WriterName, (List<SelectListItem>)ViewBag.Writers, new { @class = "form-control" })
+        <br />
+        <label>Publisher</label>
+        @Html.TextBoxFor(x => x.Publisher, new { @class = "form-control" })
+        <br />
+        <label>Publish Date</label>
+        @Html.TextBoxFor(x => x.PublishYear, new { @class = "form-control" })
+        <br />
+        <label>Number of Page</label>
+        @Html.TextBoxFor(x => x.Pages, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-success">Update Book</button>
+    }
+</div>

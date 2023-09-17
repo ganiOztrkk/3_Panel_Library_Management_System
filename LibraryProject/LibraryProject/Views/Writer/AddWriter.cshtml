@@ -1,0 +1,21 @@
+﻿@model LibraryProject.Models.Entity.Writers
+@{
+    ViewBag.Title = "AddWriter";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container">
+    <form method="post">
+        <br />
+        <label>Writer Name</label>
+        <input type="text" class="form-control" style="width: 50%" name="WriterName" />
+        <br />
+        <label>Writer Surname</label>
+        <input type="text" class="form-control" style="width: 50%" name="WriterSurname" />
+        <br />
+        <label>Writer Details</label>
+        <input type="text" class="form-control" style="width: 50%" name="WriterDetail" />
+        <br />
+        <button class="btn btn-primary">Add Writer</button>
+    </form>
+</div>
