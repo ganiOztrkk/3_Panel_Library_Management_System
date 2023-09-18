@@ -1,8 +1,11 @@
-﻿@model IEnumerable<LibraryProject.Models.Entity.Members>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<LibraryProject.Models.Entity.Members>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 <div class="container mt-2 mb-2 text-center">
     <table class="table table-bordered">
@@ -34,5 +37,8 @@
             </tr>
         }
     </table>
+
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index", new{page}))
+
     <a href="/Member/AddMember/" class="btn btn-primary">Add New Member</a>
 </div>

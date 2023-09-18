@@ -1,19 +1,20 @@
 ﻿@model LibraryProject.Models.Entity.Members
 @{
-    ViewBag.Title = "AddMember";
+    ViewBag.Title = "UpdateMember";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 <div class="container">
-    @using (Html.BeginForm("AddMember", "Member", FormMethod.Post))
+    @using (Html.BeginForm("UpdateMember", "Member", FormMethod.Post))
     {
+        @Html.HiddenFor(x=>x.MemberId)
         <br />
         <label>Member Name</label>
         @Html.TextBoxFor(x => x.MemberName, new { @class = "form-control", style = "width:50%" })
         @Html.ValidationMessageFor(x => x.MemberName, "", new { @style = "color:red" })
         <br />
         <label>Member Surname</label>
-        @Html.TextBoxFor(x => x.MemberSurname ,new { @class = "form-control", style = "width:50%" })
+        @Html.TextBoxFor(x => x.MemberSurname, new { @class = "form-control", style = "width:50%" })
         @Html.ValidationMessageFor(x => x.MemberSurname, "", new { @style = "color:red" })
         <br />
         <label>Phone Number</label>
@@ -36,6 +37,6 @@
         @Html.TextBoxFor(x => x.MemberImage, new { @class = "form-control", style = "width:50%" })
         @Html.ValidationMessageFor(x => x.MemberImage, "", new { @style = "color:red" })
         <br />
-        <button class="btn btn-primary">Add New Member</button>
+        <button class="btn btn-primary">Update Member</button>
     }
 </div>

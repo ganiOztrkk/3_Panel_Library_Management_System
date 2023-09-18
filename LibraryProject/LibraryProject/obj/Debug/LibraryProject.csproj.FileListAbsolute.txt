@@ -81,3 +81,7 @@ C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\L
 C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\EntityFramework.SqlServer.dll
 C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\EntityFramework.xml
 C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\EntityFramework.SqlServer.xml
+C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\PagedList.dll
+C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\PagedList.Mvc.dll
+C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\PagedList.xml
+C:\Users\gani9\Desktop\GitHub\3_Panel_Library_Management_System\LibraryProject\LibraryProject\bin\PagedList.Mvc.xml
