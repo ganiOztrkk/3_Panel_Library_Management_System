@@ -56,13 +56,18 @@ namespace LibraryProject.Controllers
             {
                 return View();
             }
-            updateMember.MemberName = member.MemberName;
-            updateMember.MemberSurname = member.MemberSurname;
-            updateMember.MemberPhone = member.MemberPhone;
-            updateMember.MemberSchool = member.MemberSchool;
-            updateMember.MemberImage = member.MemberImage;
-            updateMember.MemberUsername = member.MemberUsername;
-            updateMember.MemberPassword = member.MemberPassword;
+
+            if (updateMember != null)
+            {
+                updateMember.MemberName = member.MemberName;
+                updateMember.MemberSurname = member.MemberSurname;
+                updateMember.MemberPhone = member.MemberPhone;
+                updateMember.MemberSchool = member.MemberSchool;
+                updateMember.MemberImage = member.MemberImage;
+                updateMember.MemberUsername = member.MemberUsername;
+                updateMember.MemberPassword = member.MemberPassword;
+            }
+
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

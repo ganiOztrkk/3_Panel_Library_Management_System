@@ -1,0 +1,28 @@
+﻿@model LibraryProject.Models.Entity.Rents
+@{
+    ViewBag.Title = "RentBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm("RentBook", "Rent", FormMethod.Post))
+    {
+        <br />
+        <label>Member ID</label>
+        @Html.TextBoxFor(x => x.Member, new { @class = "form-control", style = "width:50%" })
+        <br />
+        <label>Book ID</label>
+        @Html.TextBoxFor(x => x.Book, new { @class = "form-control", style = "width:50%" })
+        <br />
+        <label>Employee ID</label>
+        @Html.TextBoxFor(x => x.Employee, new { @class = "form-control", style = "width:50%" })
+        <br />
+        <label>Rental Date</label>
+        <input type="text" class="form-control" readonly name="RentalDate" value="@DateTime.Now.ToShortDateString()"/>
+        <br />
+        <label>Return Date</label>
+        <input type="text" class="form-control" readonly name="ReturnDate" value="@DateTime.Now.AddDays(7).ToShortDateString()"/>
+        <br />
+        <button class="btn btn-primary">Rent Book</button>
+    }
+</div>

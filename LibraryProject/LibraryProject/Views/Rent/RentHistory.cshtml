@@ -1,0 +1,33 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Rents>
+@{
+    ViewBag.Title = "RentHistory";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container mt-2 mb-2 text-center">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Rent ID</th>
+            <th>Book</th>
+            <th>Member</th>
+            <th>Employee</th>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+            <th>Delete From History</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RentId</td>
+                <td>@item.Books.BookName</td>
+                <td>@item.Members.MemberName @item.Members.MemberSurname</td>
+                <td>@item.Employees.EmployeeName</td>
+                <td>@Convert.ToDateTime(item.RentalDate).ToShortDateString()</td>
+                <td>@Convert.ToDateTime(item.ReturnDate).ToShortDateString()</td>
+                <td><a href="/Rent/DeleteRent/@item.RentId" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Rent/Index/" class="btn btn-primary">Back To Rent Page</a>
+</div>

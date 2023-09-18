@@ -96,6 +96,7 @@ namespace LibraryProject.Controllers
                 updatedBook.BookName = books.BookName;
                 updatedBook.Publisher = books.Publisher;
                 updatedBook.PublishYear = books.PublishYear;
+                updatedBook.Status = true;
                 updatedBook.Pages = books.Pages;
                 var category = _db.Categories.FirstOrDefault(x => x.CategoryId == books.Categories.CategoryId);
                 var writer = _db.Writers.FirstOrDefault(x => x.WriterId == books.Writers.WriterId);

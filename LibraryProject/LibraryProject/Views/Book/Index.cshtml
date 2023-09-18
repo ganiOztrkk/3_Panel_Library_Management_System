@@ -36,7 +36,14 @@
                 <td>@item.Pages</td>
                 <td>@item.Publisher</td>
                 <td>@item.PublishYear</td>
-                <td>@item.Status</td>
+                @if (@item.Status == true)
+                {
+                    <td style="color:green"><b>Open Rent</b></td>
+                }
+                else
+                {
+                    <td style="color:red"><b>Unavailable</b></td>
+                }
                 <td><a href="/Book/UpdateBook/@item.BookId" class="btn btn-warning">Update</a></td>
                 <td><a href="/Book/DeleteBook/@item.BookId" class="btn btn-danger">Delete</a></td>
             </tr>
