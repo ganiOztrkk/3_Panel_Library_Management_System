@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LibraryProject.Models.Entity
 {
     using System;
@@ -22,9 +24,15 @@ namespace LibraryProject.Models.Entity
         }
     
         public int MemberId { get; set; }
+        [Required(ErrorMessage = "Name cannot be empty.")]
+        [StringLength(20,ErrorMessage = "Max Length 20")]
         public string MemberName { get; set; }
+        [Required(ErrorMessage = "Surname cannot be empty.")]
         public string MemberSurname { get; set; }
+        [Required(ErrorMessage = "Username cannot be empty.")]
         public string MemberUsername { get; set; }
+        [Required(ErrorMessage = "Password cannot be empty.")]
+        [StringLength(10,ErrorMessage = "Max Length 10")]
         public string MemberPassword { get; set; }
         public string MemberImage { get; set; }
         public string MemberPhone { get; set; }
