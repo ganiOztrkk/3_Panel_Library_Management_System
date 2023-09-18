@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LibraryProject.Models.Entity
 {
     using System;
@@ -19,9 +21,12 @@ namespace LibraryProject.Models.Entity
         {
             this.Rents = new HashSet<Rents>();
         }
-    
         public int EmployeeId { get; set; }
+
+
+        [Required(ErrorMessage = "Hata!")]
         public string EmployeeName { get; set; }
+
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rents> Rents { get; set; }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Employees>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container text-center mt-2 mb-2">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Employee Name</th>
+            <th>Update Employee</th>
+            <th>Delete Employee</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmployeeId</td>
+                <td>@item.EmployeeName</td>
+                <td><a href="/Employee/UpdateEmployee/@item.EmployeeId" class="btn btn-warning">Update</a></td>
+                <td><a href="/Employee/DeleteEmployee/@item.EmployeeId" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Employee/AddEmployee/" class="btn btn-primary">Add New Employee</a>
+</div>
