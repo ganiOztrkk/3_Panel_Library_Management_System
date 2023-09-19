@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Books">
       <EntityTypeMapping TypeName="DbLibraryModel.Books">
         <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="BookImage" ColumnName="BookImage" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="BookId" ColumnName="BookId" />
           <ScalarProperty Name="BookName" ColumnName="BookName" />
@@ -97,6 +98,17 @@
           <ScalarProperty Name="WriterName" ColumnName="WriterName" />
           <ScalarProperty Name="WriterSurname" ColumnName="WriterSurname" />
           <ScalarProperty Name="WriterDetail" ColumnName="WriterDetail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="DbLibraryModel.Contacts">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="MailContent" ColumnName="MailContent" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

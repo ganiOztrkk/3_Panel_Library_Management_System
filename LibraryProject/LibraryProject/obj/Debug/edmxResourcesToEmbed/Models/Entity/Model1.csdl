@@ -15,6 +15,7 @@
     <NavigationProperty Name="Writers" Relationship="Self.FK_Books_Writers" FromRole="Books" ToRole="Writers" />
     <NavigationProperty Name="Rents" Relationship="Self.FK_Rents_Books" FromRole="Books" ToRole="Rents" />
     <Property Name="Status" Type="Boolean" />
+    <Property Name="BookImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="CashTransactions">
     <Key>
@@ -226,5 +227,16 @@
       <End Role="Rents" EntitySet="Rents" />
       <End Role="Penalties" EntitySet="Penalties" />
     </AssociationSet>
+    <EntitySet Name="Contacts" EntityType="DbLibraryModel.Contacts" />
   </EntityContainer>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MailContent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

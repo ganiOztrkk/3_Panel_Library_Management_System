@@ -17,6 +17,7 @@
           <Property Name="Publisher" Type="varchar" MaxLength="50" />
           <Property Name="Pages" Type="varchar" MaxLength="4" />
           <Property Name="Status" Type="bit" />
+          <Property Name="BookImage" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CashTransactions">
           <Key>
@@ -32,6 +33,16 @@
           </Key>
           <Property Name="CategoryId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" />
+          <Property Name="MailContent" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -183,6 +194,7 @@
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CashTransactions" EntityType="Self.CashTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Penalties" EntityType="Self.Penalties" Schema="dbo" store:Type="Tables" />
@@ -237,6 +249,7 @@
           <NavigationProperty Name="Writers" Relationship="Self.FK_Books_Writers" FromRole="Books" ToRole="Writers" />
           <NavigationProperty Name="Rents" Relationship="Self.FK_Rents_Books" FromRole="Books" ToRole="Rents" />
           <Property Name="Status" Type="Boolean" />
+          <Property Name="BookImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CashTransactions">
           <Key>
@@ -448,7 +461,18 @@
             <End Role="Rents" EntitySet="Rents" />
             <End Role="Penalties" EntitySet="Penalties" />
           </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="DbLibraryModel.Contacts" />
         </EntityContainer>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailContent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -458,6 +482,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DbLibraryModel.Books">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="BookImage" ColumnName="BookImage" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />
@@ -551,6 +576,17 @@
                 <ScalarProperty Name="WriterName" ColumnName="WriterName" />
                 <ScalarProperty Name="WriterSurname" ColumnName="WriterSurname" />
                 <ScalarProperty Name="WriterDetail" ColumnName="WriterDetail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="DbLibraryModel.Contacts">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="MailContent" ColumnName="MailContent" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

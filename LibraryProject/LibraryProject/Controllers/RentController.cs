@@ -38,8 +38,10 @@ namespace LibraryProject.Controllers
 
         public ActionResult ReturnBook(int id)
         {
-            var book = _db.Rents.Find(id);
-            if (book != null) book.Status = false;
+            var rent = _db.Rents.Find(id);
+            if (rent != null) rent.Status = false;
+            var book = _db.Books.FirstOrDefault(x => x.BookId == rent.Book);
+            if (book != null) book.Status = true;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
