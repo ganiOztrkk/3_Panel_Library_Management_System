@@ -33,7 +33,8 @@ namespace LibraryProject.Controllers
 
         public ActionResult Logout()
         {
-            return View();
+            FormsAuthentication.SignOut();
+            return View("Login");
         }
 
         [HttpGet]

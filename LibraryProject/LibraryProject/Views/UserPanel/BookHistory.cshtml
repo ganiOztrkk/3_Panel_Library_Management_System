@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Rents>
+@{
+    ViewBag.Title = "BookHistory";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h2>Books I Rented</h2>
+
+<div class="container mt-2 mb-2 text-center">
+    <table class="table table-bordered">
+        <tr>
+            <th>Book Title</th>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Books.BookName</td>
+                <td>@item.RentalDate</td>
+                <td>@item.ReturnDate</td>
+            </tr>
+        }
+
+    </table>
+</div>

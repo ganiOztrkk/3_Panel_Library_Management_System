@@ -36,5 +36,13 @@ namespace LibraryProject.Controllers
             }
             return View();
         }
+
+        public ActionResult BookHistory()
+        {
+            var userName = (string)Session["Username"];
+            var userId = _db.Members.Where(x=>x.MemberUsername == userName).Select(y=>y.MemberId).FirstOrDefault();
+            var books = _db.Rents.Where(x => x.Member == userId).ToList();
+            return View(books);
+        }
     }
 }
