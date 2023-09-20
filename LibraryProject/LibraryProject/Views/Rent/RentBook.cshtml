@@ -18,10 +18,10 @@
         @Html.TextBoxFor(x => x.Employee, new { @class = "form-control", style = "width:50%" })
         <br />
         <label>Rental Date</label>
-        <input type="text" class="form-control" readonly name="RentalDate" value="@DateTime.Now.ToShortDateString()"/>
+        <input type="text" class="form-control"  name="RentalDate" value="@DateTime.Now.ToShortDateString()"/>
         <br />
         <label>Return Date</label>
-        <input type="text" class="form-control" readonly name="ReturnDate" value="@DateTime.Now.AddDays(7).ToShortDateString()"/>
+        <input type="text" class="form-control"  name="ReturnDate" value="@DateTime.Now.AddDays(7).ToShortDateString()"/>
         <br />
         <button class="btn btn-primary">Rent Book</button>
     }

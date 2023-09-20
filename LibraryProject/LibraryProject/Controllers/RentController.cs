@@ -42,6 +42,19 @@ namespace LibraryProject.Controllers
             if (rent != null) rent.Status = false;
             var book = _db.Books.FirstOrDefault(x => x.BookId == rent.Book);
             if (book != null) book.Status = true;
+            var penaltyDate = DateTime.Now;
+            var returnDate = Convert.ToDateTime(rent.ReturnDate);
+            TimeSpan retunSpan = returnDate - penaltyDate;
+            if (retunSpan.Days < 0)
+            {
+                _db.Penalties.Add(new Penalties()
+                {
+                    Member = rent.Member,
+                    PenaltyReason = rent.RentId,
+                    PenaltyAmount = (retunSpan.Days * 10)*(-1)
+                });
+                _db.SaveChanges();
+            }
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -58,6 +71,14 @@ namespace LibraryProject.Controllers
             if (rent != null) _db.Rents.Remove(rent);
             _db.SaveChanges();
             return RedirectToAction("RentHistory");
+        }
+
+        public ActionResult Savings()
+        {
+            var savings = _db.Penalties.ToList();
+            var totalSavings = savings.Sum(x => x.PenaltyAmount);
+            ViewBag.totalSavings = totalSavings;
+            return View(savings);
         }
     }
 }

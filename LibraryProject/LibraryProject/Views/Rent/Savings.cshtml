@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Penalties>
+@{
+    ViewBag.Title = "Savings";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Penalty History</h2>
+
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Member</th>
+            <th>Penalty Amount</th>
+            <th>Penalty Reason RentId</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PenaltyId</td>
+                <td>@item.Members.MemberName @item.Members.MemberSurname</td>
+                <td>@item.PenaltyAmount $</td>
+                <td>@item.PenaltyReason</td>
+            </tr>
+        }
+    </table>
+    <label class="form-control">Total Savings: @ViewBag.totalSavings</label>
+</div>
