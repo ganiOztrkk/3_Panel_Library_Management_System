@@ -1,6 +1,9 @@
-﻿
+﻿@using LibraryProject.Models.Entity
+
 @{
     Layout = null;
+    var entities = new DbLibraryEntities();
+    var inbox = entities.Contacts.Count(x => x.Status == false);
 }
 
 <!DOCTYPE html>
@@ -11,66 +14,81 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
     <style>
-body {font-family: "Lato", sans-serif;}
+        body {
+            font-family: "Lato", sans-serif;
+        }
 
-.sidebar {
-  height: 100%;
-  width: 220px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 16px;
-}
+        .sidebar {
+            height: 100%;
+            width: 220px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
 
-.sidebar a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-}
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: #818181;
+                display: block;
+            }
 
-.sidebar a:hover {
-  color: #f1f1f1;
-}
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                }
 
-.main {
-  margin-left: 220px; /* Same as the width of the sidenav */
-  padding: 0px 10px;
-}
+        .main {
+            margin-left: 220px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
 
-@@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-</style>
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+    </style>
 </head>
 <body>
 
-<div class="sidebar">
-    <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="/Home/Index/"><i class="fa fa-fw fa-chrome"></i>Web Page</a>
-    <a href="/Category/Index/"><i class="fa fa-fw fa-list"></i>Categories</a>
-    <a href="/Book/Index/"><i class="fa fa-fw fa-book"></i>Books</a>
-    <a href="/Writer/Index/"><i class="fa fa-fw fa-pencil"></i>Writers</a>
-    <a href="/Member/Index/"><i class="fa fa-fw fa-user"></i>Members</a>
-    <a href="/Employee/Index/"><i class="fa fa-fw fa-eye"></i>Employees</a>
-    <a href="/Rent/RentBook/"><i class="fa fa-fw fa-mail-forward"></i>Renting a Book</a>
-    <a href="/Rent/Index/"><i class="fa fa-fw fa-mail-reply"></i>Taking a Book</a>
-    <a href="/Rent/RentHistory/"><i class="fa fa-fw fa-history"></i>Rent History</a>
-    <a href="/Statistics/Index/"><i class="fa fa-fw fa-bar-chart"></i>Statistics</a>
-    <a href="/Rent/Savings/"><i class="fa fa-fw fa-money"></i>Savings</a>
-    <a href="#contact"><i class="fa fa-fw fa-cog"></i>Settings</a>
-    <a href="#contact"><i class="fa fa-fw fa-info"></i>Help</a>
-    <a href="#contact"><i class="fa fa-fw fa-sign-out"></i>Exit</a>
-</div>
+    <div class="sidebar">
+        <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="/Home/Index/"><i class="fa fa-fw fa-chrome"></i>Web Page</a>
+        <a href="/Category/Index/"><i class="fa fa-fw fa-list"></i>Categories</a>
+        <a href="/Book/Index/"><i class="fa fa-fw fa-book"></i>Books</a>
+        <a href="/Writer/Index/"><i class="fa fa-fw fa-pencil"></i>Writers</a>
+        <a href="/Member/Index/"><i class="fa fa-fw fa-user"></i>Members</a>
+        <a href="/Employee/Index/"><i class="fa fa-fw fa-eye"></i>Employees</a>
+        <a href="/Rent/RentBook/"><i class="fa fa-fw fa-mail-forward"></i>Renting a Book</a>
+        <a href="/Rent/Index/"><i class="fa fa-fw fa-mail-reply"></i>Taking a Book</a>
+        <a href="/Rent/RentHistory/"><i class="fa fa-fw fa-history"></i>Rent History</a>
+        @if (inbox > 0)
+        {
+            <a href="/Mail/Inbox/"><i class="fa fa-fw fa-hand-grab-o"></i>Inbox (@inbox)</a>
+        }
+        else
+        {
+            <a href="/Mail/Inbox/"><i class="fa fa-fw fa-hand-grab-o"></i>Inbox</a>
+        }
+        <a href="/Statistics/Index/"><i class="fa fa-fw fa-bar-chart"></i>Statistics</a>
+        <a href="/Rent/Savings/"><i class="fa fa-fw fa-money"></i>Savings</a>
+        <a href="#contact"><i class="fa fa-fw fa-cog"></i>Settings</a>
+        <a href="#contact"><i class="fa fa-fw fa-info"></i>Help</a>
+        <a href="#contact"><i class="fa fa-fw fa-sign-out"></i>Exit</a>
+    </div>
 
-<div class="main">
-    @RenderBody()
-</div>
-     
+    <div class="main">
+        @RenderBody()
+    </div>
+
 </body>
-</html> 
+</html>

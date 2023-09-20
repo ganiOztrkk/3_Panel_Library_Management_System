@@ -38,6 +38,7 @@
     <Property Name="Mail" Type="varchar" MaxLength="50" />
     <Property Name="Subject" Type="varchar" MaxLength="50" />
     <Property Name="MailContent" Type="varchar" MaxLength="500" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="Employees">
     <Key>

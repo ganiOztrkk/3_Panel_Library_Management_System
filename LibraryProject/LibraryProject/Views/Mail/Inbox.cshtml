@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LibraryProject.Models.Entity.Contacts>
+@{
+    ViewBag.Title = "Inbox";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container mt-3 mb-3 text-center">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Sender Name</th>
+            <th>Sender Mail</th>
+            <th>Mail Subject</th>
+            <th>Status</th>
+            <th>Mark Unread</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContactId</td>
+                <td>@item.Name</td>
+                <td>@item.Mail</td>
+                <td>@item.Subject</td>
+                @if (item.Status == true)
+                {
+                    <td><a href="/Mail/ViewMail/@item.ContactId" class="btn btn-success">Read</a></td>
+                }
+                else
+                {
+                    <td><a href="/Mail/ViewMail/@item.ContactId" class="btn btn-warning">Not Read</a></td>
+                }
+                <td><a href="/Mail/MarkUnread/@item.ContactId" class="btn btn-danger">Unread</a></td>
+            </tr>
+        }
+    </table>
+</div>

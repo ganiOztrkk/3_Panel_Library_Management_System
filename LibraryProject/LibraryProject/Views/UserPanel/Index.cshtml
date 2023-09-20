@@ -1,0 +1,51 @@
+﻿@model LibraryProject.Models.Entity.Members
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h2>User Profile</h2>
+<br />
+
+@using (Html.BeginForm("Index", "UserPanel", FormMethod.Post))
+{
+
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                <label style="font-weight:bold;">Name: </label> @Html.TextBoxFor(x=>x.MemberName, new{@class="form-control", @readonly=""})
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bold;">Surname: </label> @Html.TextBoxFor(x => x.MemberSurname, new { @class = "form-control", @readonly = "" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bold;">Password: </label> @Html.TextBoxFor(x => x.MemberPassword, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bold;">Image: </label> @Html.TextBoxFor(x => x.MemberImage, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bold;">Phone: </label> @Html.TextBoxFor(x => x.MemberPhone, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bold;">School: </label> @Html.TextBoxFor(x => x.MemberSchool, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-warning">Update Profile</button>
+            </td>
+        </tr>
+    </table>
+
+}

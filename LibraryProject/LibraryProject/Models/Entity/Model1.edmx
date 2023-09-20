@@ -43,6 +43,7 @@
           <Property Name="Mail" Type="varchar" MaxLength="50" />
           <Property Name="Subject" Type="varchar" MaxLength="50" />
           <Property Name="MailContent" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -472,6 +473,7 @@
           <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MailContent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -582,6 +584,7 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="DbLibraryModel.Contacts">
               <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="MailContent" ColumnName="MailContent" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />

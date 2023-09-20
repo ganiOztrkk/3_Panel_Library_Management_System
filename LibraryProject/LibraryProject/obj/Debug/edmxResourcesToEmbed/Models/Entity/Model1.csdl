@@ -238,5 +238,6 @@
     <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="MailContent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
   </EntityType>
 </Schema>

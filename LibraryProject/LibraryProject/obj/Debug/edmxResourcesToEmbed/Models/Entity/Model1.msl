@@ -104,6 +104,7 @@
     <EntitySetMapping Name="Contacts">
       <EntityTypeMapping TypeName="DbLibraryModel.Contacts">
         <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="MailContent" ColumnName="MailContent" />
           <ScalarProperty Name="Subject" ColumnName="Subject" />
           <ScalarProperty Name="Mail" ColumnName="Mail" />

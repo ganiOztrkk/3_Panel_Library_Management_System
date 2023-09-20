@@ -1,0 +1,21 @@
+﻿@model LibraryProject.Models.Entity.Contacts
+@{
+    ViewBag.Title = "ViewMail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container mt-3 mb-3">
+    <label>Sender Name</label>
+    <input type="text" class="form-control" readonly value="@Model.Name"/>
+    <br/>
+    <label>Sender Mail</label>
+    <input type="email" class="form-control" readonly value="@Model.Mail"/>
+    <br/>
+    <label>Mail Subject</label>
+    <input type="text" class="form-control" readonly value="@Model.Subject"/>
+    <br/>
+    <label>Mail Content</label>
+    @Html.TextAreaFor(x=>x.MailContent, new{@class="form-control", rows="3"})
+    <br/>
+    <a href="/Mail/Inbox/" class="btn btn-primary">Back To Inbox</a>
+</div>

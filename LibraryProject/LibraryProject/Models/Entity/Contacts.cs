@@ -19,5 +19,6 @@ namespace LibraryProject.Models.Entity
         public string Mail { get; set; }
         public string Subject { get; set; }
         public string MailContent { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 }
