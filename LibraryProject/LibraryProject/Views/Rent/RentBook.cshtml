@@ -8,15 +8,15 @@
     @using (Html.BeginForm("RentBook", "Rent", FormMethod.Post))
     {
         <br />
-        <label>Member ID</label>
+        <label>Member</label>
         @*@Html.TextBoxFor(x => x.Member, new { @class = "form-control", style = "width:50%" })*@
         @Html.DropDownListFor(x=>x.Member, (List<SelectListItem>)ViewBag.MemberNames, new{@class="form-control"})
         <br />
-        <label>Book ID</label>
+        <label>Book</label>
         @*@Html.TextBoxFor(x => x.Book, new { @class = "form-control", style = "width:50%" })*@
         @Html.DropDownListFor(x=>x.Book, (List<SelectListItem>)ViewBag.BookNames, new{@class="form-control"})
         <br />
-        <label>Employee ID</label>
+        <label>Employee</label>
         @*@Html.TextBoxFor(x => x.Employee, new { @class = "form-control", style = "width:50%" })*@
         @Html.DropDownListFor(x=>x.Employee, (List<SelectListItem>)ViewBag.EmployeeNames, new{@class="form-control"})
         <br />
