@@ -12,13 +12,34 @@ namespace LibraryProject.Controllers
         private readonly DbLibraryEntities _db = new DbLibraryEntities();
         public ActionResult Index()
         {
-            var rents = _db.Rents.Where(x=>x.Status==true).ToList();
+            var rents = _db.Rents.Where(x => x.Status == true).ToList();
             return View(rents);
         }
 
         [HttpGet]
         public ActionResult RentBook()
         {
+            List<SelectListItem> memberNames = (from x in _db.Members.ToList()
+                                                select new SelectListItem()
+                                                {
+                                                    Text = x.MemberName + " " + x.MemberSurname,
+                                                    Value = x.MemberId.ToString()
+                                                }).ToList();
+            ViewBag.MemberNames = memberNames;
+            List<SelectListItem> bookNames = (from x in _db.Books.ToList().Where(y=>y.Status == true)
+                                              select new SelectListItem()
+                                              {
+                                                  Text = x.BookName,
+                                                  Value = x.BookId.ToString()
+                                              }).ToList();
+            ViewBag.BookNames = bookNames;
+            List<SelectListItem> employeeNames = (from x in _db.Employees.ToList()
+                                                  select new SelectListItem()
+                                                  {
+                                                      Text = x.EmployeeName,
+                                                      Value = x.EmployeeId.ToString()
+                                                  }).ToList();
+            ViewBag.EmployeeNames = employeeNames;
             return View();
         }
         [HttpPost]
@@ -51,7 +72,7 @@ namespace LibraryProject.Controllers
                 {
                     Member = rent.Member,
                     PenaltyReason = rent.RentId,
-                    PenaltyAmount = (retunSpan.Days * 10)*(-1)
+                    PenaltyAmount = (retunSpan.Days * 10) * (-1)
                 });
                 _db.SaveChanges();
             }
@@ -61,7 +82,7 @@ namespace LibraryProject.Controllers
 
         public ActionResult RentHistory()
         {
-            var rents = _db.Rents.Where(x=>x.Status==false).ToList();
+            var rents = _db.Rents.Where(x => x.Status == false).ToList();
             return View(rents);
         }
 

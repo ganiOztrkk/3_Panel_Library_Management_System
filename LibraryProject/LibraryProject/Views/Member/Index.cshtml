@@ -13,10 +13,7 @@
             <th>#</th>
             <th>Member Name</th>
             <th>Member Surname</th>
-            <th>Member Phone</th>
-            <th>Member School</th>
             <th>Member Username</th>
-            <th>Member Password</th>
             <th>Member Update</th>
             <th>Member Delete</th>
         </tr>
@@ -26,10 +23,7 @@
                 <td>@item.MemberId</td>
                 <td>@item.MemberName</td>
                 <td>@item.MemberSurname</td>
-                <td>@item.MemberPhone</td>
-                <td>@item.MemberSchool</td>
                 <td>@item.MemberUsername</td>
-                <td>@item.MemberPassword</td>
                 <td class="text-center"><a href="/Member/UpdateMember/@item.MemberId" 
                                            class="btn btn-warning">Update</a></td>
                 <td class="text-center"><a href="/Member/DeleteMember/@item.MemberId" 
@@ -37,8 +31,8 @@
             </tr>
         }
     </table>
+    <a href="/Member/AddMember/" class="btn btn-primary">Add New Member</a>
 
     @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index", new{page}))
 
-    <a href="/Member/AddMember/" class="btn btn-primary">Add New Member</a>
 </div>

@@ -9,13 +9,16 @@
     {
         <br />
         <label>Member ID</label>
-        @Html.TextBoxFor(x => x.Member, new { @class = "form-control", style = "width:50%" })
+        @*@Html.TextBoxFor(x => x.Member, new { @class = "form-control", style = "width:50%" })*@
+        @Html.DropDownListFor(x=>x.Member, (List<SelectListItem>)ViewBag.MemberNames, new{@class="form-control"})
         <br />
         <label>Book ID</label>
-        @Html.TextBoxFor(x => x.Book, new { @class = "form-control", style = "width:50%" })
+        @*@Html.TextBoxFor(x => x.Book, new { @class = "form-control", style = "width:50%" })*@
+        @Html.DropDownListFor(x=>x.Book, (List<SelectListItem>)ViewBag.BookNames, new{@class="form-control"})
         <br />
         <label>Employee ID</label>
-        @Html.TextBoxFor(x => x.Employee, new { @class = "form-control", style = "width:50%" })
+        @*@Html.TextBoxFor(x => x.Employee, new { @class = "form-control", style = "width:50%" })*@
+        @Html.DropDownListFor(x=>x.Employee, (List<SelectListItem>)ViewBag.EmployeeNames, new{@class="form-control"})
         <br />
         <label>Rental Date</label>
         <input type="text" class="form-control"  name="RentalDate" value="@DateTime.Now.ToShortDateString()"/>
