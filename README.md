@@ -16,7 +16,6 @@ Bir kütüphanenin vitrin, admin ve kullanıcı olmak üzere 3 temel panelini ol
 * DB First SQL Veri Tabanı Yönetimi
   
 ## Ekran Görüntüleri
-<h2>Project Screenshots:</h2>
 
 <img src="https://i.hizliresim.com/9ovisfu.jpeg" alt="project-screenshot">
 
